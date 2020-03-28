@@ -1,14 +1,15 @@
 module.exports = {
-  "routes": [
+  routes: [
     {
-      "name": "bootcamp",
-      "path": "/api/v1/bootcamps"
+      name: "bootcamps",
+      path: "/api/v1/bootcamps"
+    },
+    {
+      name: "courses",
+      path: "/api/v1/courses"
     }
   ],
-  "protocol": "http",
-  "models": [
-    "bootcamp",
-    "course"
-  ],
-  "autoRequireRoutes": false
+  protocol: "http",
+  models: ["bootcamp", "course"],
+  autoRequireRoutes: false
 };

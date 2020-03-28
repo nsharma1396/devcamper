@@ -1,5 +1,7 @@
-const bootcamp = require("./bootcamp");
+const bootcamps = require("./bootcamps");
+const courses = require("./courses");
 
 module.exports = {
-  bootcamp
+  bootcamps,
+  courses
 };

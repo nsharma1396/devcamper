@@ -1,6 +1,6 @@
 const bootcampRouter = require("kvell-scripts").router();
 // eslint-disable-next-line no-unused-vars
-const bootcampController = require("../controllers").bootcamp;
+const bootcampController = require("../controllers").bootcamps;
 
 bootcampRouter
   .route("/radius/:zipcode/:distance")
