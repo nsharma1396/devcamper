@@ -11,7 +11,8 @@ const errorHandler = require("../middlewares/error");
 const globalMiddlewares = (app, server) => {
   app.use(expressJson());
 
-  app.use("/api/v1/bootcamps", routes.bootcamp);
+  app.use("/api/v1/bootcamps", routes.bootcamps);
+  app.use("/api/v1/courses", routes.courses);
 
   app.use(errorHandler);
 };
