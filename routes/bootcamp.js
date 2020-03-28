@@ -3,6 +3,10 @@ const bootcampRouter = require("kvell-scripts").router();
 const bootcampController = require("../controllers").bootcamp;
 
 bootcampRouter
+  .route("/radius/:zipcode/:distance")
+  .get(bootcampController.getBootcampsInRadius);
+
+bootcampRouter
   .route("/")
   .get(bootcampController.getBootcamps)
   .post(bootcampController.createBootcamp);
