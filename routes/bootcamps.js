@@ -12,6 +12,8 @@ bootcampRouter
   .route("/radius/:zipcode/:distance")
   .get(bootcampController.getBootcampsInRadius);
 
+bootcampRouter.route("/:id/photo").put(bootcampController.bootcampPhotoUpload);
+
 bootcampRouter
   .route("/")
   .get(bootcampController.getBootcamps)

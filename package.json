@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "express-fileupload": "^1.1.6",
     "kvell-db-plugin-mongoose": "^1.0.1-alpha.8.1",
     "kvell-scripts": "^1.0.1-alpha.8.1",
     "node-geocoder": "^3.26.0",
