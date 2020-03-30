@@ -1,10 +1,17 @@
 const coursesRouter = require("kvell-scripts").router({ mergeParams: true });
-// eslint-disable-next-line no-unused-vars
 const coursesController = require("../controllers").courses;
+const Course = require("../models/course");
+const advancedResults = require("../middlewares/advancedResults");
 
 coursesRouter
   .route("/")
-  .get(coursesController.getCourses)
+  .get(
+    advancedResults(Course, {
+      path: "bootcamp",
+      select: "name description"
+    }),
+    coursesController.getCourses
+  )
   .post(coursesController.createCourse);
 
 coursesRouter

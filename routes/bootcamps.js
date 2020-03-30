@@ -1,6 +1,7 @@
 const bootcampRouter = require("kvell-scripts").router();
-// eslint-disable-next-line no-unused-vars
 const bootcampController = require("../controllers").bootcamps;
+const advancedResults = require("../middlewares/advancedResults");
+const Bootcamp = require("../models/bootcamp");
 
 // Include other resource routers
 const courseRouter = require("./courses");
@@ -16,7 +17,7 @@ bootcampRouter.route("/:id/photo").put(bootcampController.bootcampPhotoUpload);
 
 bootcampRouter
   .route("/")
-  .get(bootcampController.getBootcamps)
+  .get(advancedResults(Bootcamp, "courses"), bootcampController.getBootcamps)
   .post(bootcampController.createBootcamp);
 
 bootcampRouter
