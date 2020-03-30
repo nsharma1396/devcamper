@@ -18,7 +18,7 @@ const globalMiddlewares = (app, server) => {
   app.use(fileupload());
 
   // Set static folder
-  app.use(expressStatic(path.join(__dirname, "public")));
+  app.use(expressStatic(path.join(__dirname, "..", "public")));
 
   app.use("/api/v1/bootcamps", routes.bootcamps);
   app.use("/api/v1/courses", routes.courses);
