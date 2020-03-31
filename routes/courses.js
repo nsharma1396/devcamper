@@ -1,6 +1,6 @@
 const coursesRouter = require("kvell-scripts").router({ mergeParams: true });
 const coursesController = require("../controllers").courses;
-const Course = require("../models/course");
+const Course = require("../models/Course");
 const advancedResults = require("../middlewares/advancedResults");
 
 coursesRouter

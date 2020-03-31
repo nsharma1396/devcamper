@@ -1,7 +1,7 @@
 const ErrorResponse = require("../utils/errorResponse");
 const asyncHandler = require("../middlewares/async");
-const Course = require("../models/course");
-const Bootcamp = require("../models/bootcamp");
+const Course = require("../models/Course");
+const Bootcamp = require("../models/Bootcamp");
 
 const coursesController = {};
 

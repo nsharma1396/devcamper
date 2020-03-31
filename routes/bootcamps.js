@@ -1,7 +1,7 @@
 const bootcampRouter = require("kvell-scripts").router();
 const bootcampController = require("../controllers").bootcamps;
 const advancedResults = require("../middlewares/advancedResults");
-const Bootcamp = require("../models/bootcamp");
+const Bootcamp = require("../models/Bootcamp");
 
 // Include other resource routers
 const courseRouter = require("./courses");

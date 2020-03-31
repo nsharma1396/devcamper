@@ -1,6 +1,6 @@
 const path = require("path");
 const config = require("kvell-scripts/config");
-const Bootcamp = require("../models/bootcamp");
+const Bootcamp = require("../models/Bootcamp");
 const asyncHandler = require("../middlewares/async");
 const ErrorResponse = require("../utils/errorResponse");
 const geocoder = require("../utils/geocode");
