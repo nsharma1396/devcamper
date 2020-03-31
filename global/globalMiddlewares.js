@@ -3,6 +3,7 @@ const { json: expressJson, static: expressStatic } = require("kvell-scripts");
 const routes = require("../routes");
 const errorHandler = require("../middlewares/error");
 const fileupload = require("express-fileupload");
+const cookieParser = require("cookie-parser");
 
 /**
  * `globalMiddlewares` handles all the middlewares/functions/configurations that you need
@@ -17,8 +18,13 @@ const globalMiddlewares = (app, server) => {
   // File uploading
   app.use(fileupload());
 
+  // Cookie parser
+  app.use(cookieParser());
+
   // Set static folder
   app.use(expressStatic(path.join(__dirname, "..", "public")));
+
+  app.use("/api/v1/auth", routes.auth);
 
   app.use("/api/v1/bootcamps", routes.bootcamps);
   app.use("/api/v1/courses", routes.courses);
