@@ -7,8 +7,9 @@ const seedData = async () => {
   await PluginInstance.createDBInstance(pluginOptions);
 
   // const mongoose = require("kvell-db-plugin-mongoose").dbInstance;
-  const Bootcamp = require("./models/bootcamp");
-  const Course = require("./models/course");
+  const Bootcamp = require("./models/Bootcamp");
+  const Course = require("./models/Course");
+  const User = require("./models/User");
 
   const bootcamps = JSON.parse(
     fs.readFileSync(`${__dirname}/_data/bootcamps.json`, `utf-8`)
@@ -18,10 +19,15 @@ const seedData = async () => {
     fs.readFileSync(`${__dirname}/_data/courses.json`, `utf-8`)
   );
 
+  const users = JSON.parse(
+    fs.readFileSync(`${__dirname}/_data/users.json`, `utf-8`)
+  );
+
   const importData = async () => {
     try {
       await Bootcamp.create(bootcamps);
       await Course.create(courses);
+      await User.create(users);
       console.log(`Data Imported`);
       process.exit();
     } catch (err) {
@@ -33,6 +39,7 @@ const seedData = async () => {
     try {
       await Bootcamp.deleteMany();
       await Course.deleteMany();
+      await User.deleteMany();
       console.log(`Data Destroyed`);
       process.exit();
     } catch (err) {
