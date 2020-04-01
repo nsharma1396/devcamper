@@ -11,6 +11,10 @@ module.exports = {
     {
       "name": "auth",
       "path": "api/v1/auth"
+    },
+    {
+      "name": "users",
+      "path": "/api/v1/users"
     }
   ],
   "protocol": "http",

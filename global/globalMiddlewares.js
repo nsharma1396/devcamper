@@ -28,6 +28,8 @@ const globalMiddlewares = (app, server) => {
 
   app.use("/api/v1/bootcamps", routes.bootcamps);
   app.use("/api/v1/courses", routes.courses);
+  app.use("/api/v1/courses", routes.courses);
+  app.use("/api/v1/users", routes.users);
 
   app.use(errorHandler);
 };
