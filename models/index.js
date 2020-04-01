@@ -1,9 +1,11 @@
-const bootcamp = require("./Bootcamp");
-const course = require("./Course");
+const Bootcamp = require("./Bootcamp");
+const Course = require("./Course");
 const User = require("./User");
+const Review = require("./Review");
 
 module.exports = {
-  bootcamp,
-  course,
-  User
+  Bootcamp,
+  Course,
+  User,
+  Review
 };

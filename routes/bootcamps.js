@@ -6,10 +6,12 @@ const { protect, authorize } = require("../middlewares/auth");
 const Bootcamp = require("../models/Bootcamp");
 
 // Include other resource routers
-const courseRouter = require("./courses");
+const coursesRouter = require("./courses");
+const reviewsRouter = require("./reviews");
 
 // Re-route into other resource routers
-bootcampRouter.use("/:bootcampId/courses", courseRouter);
+bootcampRouter.use("/:bootcampId/courses", coursesRouter);
+bootcampRouter.use("/:bootcampId/reviews", reviewsRouter);
 
 bootcampRouter
   .route("/radius/:zipcode/:distance")

@@ -15,13 +15,18 @@ module.exports = {
     {
       "name": "users",
       "path": "/api/v1/users"
+    },
+    {
+      "name": "reviews",
+      "path": "/api/v1/reviews"
     }
   ],
   "protocol": "http",
   "models": [
-    "bootcamp",
-    "course",
-    "User"
+    "Bootcamp",
+    "Course",
+    "User",
+    "Review"
   ],
   "autoRequireRoutes": false
 };

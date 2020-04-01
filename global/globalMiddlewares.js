@@ -30,6 +30,7 @@ const globalMiddlewares = (app, server) => {
   app.use("/api/v1/courses", routes.courses);
   app.use("/api/v1/courses", routes.courses);
   app.use("/api/v1/users", routes.users);
+  app.use("/api/v1/reviews", routes.reviews);
 
   app.use(errorHandler);
 };
