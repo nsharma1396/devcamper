@@ -6,5 +6,6 @@ authRouter.post("/register", authController.register);
 authRouter.post("/login", authController.login);
 authRouter.get("/me", protect, authController.getMe);
 authRouter.post("/forgotpassword", authController.forgotPassword);
+authRouter.put("/resetpassword/:resetToken", authController.resetPassword);
 
 module.exports = authRouter;
