@@ -67,16 +67,30 @@ bootcampController.createBootcamp = asyncHandler(async (req, res, next) => {
 // @route     PUT /api/v1/bootcamps/:id
 // @access    Private
 bootcampController.updateBootcamp = asyncHandler(async (req, res, next) => {
-  const bootcamp = await Bootcamp.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-    runValidators: true
-  });
+  let bootcamp = await Bootcamp.findById(req.params.id);
   if (!bootcamp) {
     return next(
       new ErrorResponse(`Resource not found with id of ${req.params.id}`, 404)
     );
     // return res.status(400).json({ success: false });
   }
+
+  // Make sure user is bootcamp owner
+  // bootcamp.user returns an `ObjectId` so we need to convert it to string
+  if (bootcamp.user.toString() !== req.user.id && req.user.role !== "admin") {
+    return next(
+      new ErrorResponse(
+        `User ${req.params.id} is not authorized to update this bootcamp`,
+        401
+      )
+    );
+  }
+
+  bootcamp = await Bootcamp.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+    runValidators: true
+  });
+
   res.status(200).json({ success: true, data: bootcamp });
 });
 
@@ -91,6 +105,18 @@ bootcampController.deleteBootcamp = asyncHandler(async (req, res, next) => {
     );
     // return res.status(41100).json({ success: false });
   }
+
+  // Make sure user is bootcamp owner
+  // bootcamp.user returns an `ObjectId` so we need to convert it to string
+  if (bootcamp.user.toString() !== req.user.id && req.user.role !== "admin") {
+    return next(
+      new ErrorResponse(
+        `User ${req.params.id} is not authorized to delete this bootcamp`,
+        401
+      )
+    );
+  }
+
   bootcamp.remove();
   res.status(200).json({ success: true, data: bootcamp });
 });
@@ -137,6 +163,17 @@ bootcampController.bootcampPhotoUpload = asyncHandler(
     if (!bootcamp) {
       return next(
         new ErrorResponse(`Resource not found with id of ${req.params.id}`, 404)
+      );
+    }
+
+    // Make sure user is bootcamp owner
+    // bootcamp.user returns an `ObjectId` so we need to convert it to string
+    if (bootcamp.user.toString() !== req.user.id && req.user.role !== "admin") {
+      return next(
+        new ErrorResponse(
+          `User ${req.params.id} is not authorized to update this bootcamp`,
+          401
+        )
       );
     }
 
