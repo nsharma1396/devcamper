@@ -4,6 +4,10 @@ const routes = require("../routes");
 const errorHandler = require("../middlewares/error");
 const fileupload = require("express-fileupload");
 const cookieParser = require("cookie-parser");
+const mongoSanitize = require("express-mongo-sanitize");
+const xssClean = require("xss-clean");
+const rateLimit = require("express-rate-limit");
+const hpp = require("hpp");
 
 /**
  * `globalMiddlewares` handles all the middlewares/functions/configurations that you need
@@ -15,11 +19,28 @@ const globalMiddlewares = (app, server) => {
   // Body parser
   app.use(expressJson());
 
+  // Cookie parser
+  app.use(cookieParser());
+
   // File uploading
   app.use(fileupload());
 
-  // Cookie parser
-  app.use(cookieParser());
+  // Sanitize data to prevent SQL Injection attacks
+  app.use(mongoSanitize());
+
+  // Prevent XSS attacks
+  app.use(xssClean());
+
+  // Rate limiting
+  const limiter = rateLimit({
+    windowMs: 10 * 60 * 1000, // 10 mins
+    max: 100
+  });
+
+  app.use(limiter);
+
+  // Prevent http param pollution
+  app.use(hpp());
 
   // Set static folder
   app.use(expressStatic(path.join(__dirname, "..", "public")));
