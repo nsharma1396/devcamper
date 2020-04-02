@@ -4,14 +4,21 @@ const reviewsController = require("../controllers").reviews;
 const Review = require("../models/Review");
 const { protect, authorize } = require("../middlewares/auth");
 
-reviewsRouter.route("/").get(
-  advancedResults(Review, {
-    path: "bootcamp",
-    select: "name description"
-  }),
-  reviewsController.getReviews
-);
+reviewsRouter
+  .route("/")
+  .get(
+    advancedResults(Review, {
+      path: "bootcamp",
+      select: "name description"
+    }),
+    reviewsController.getReviews
+  )
+  .post(protect, authorize("user", "admin"), reviewsController.addReview);
 
-reviewsRouter.route("/:id").get(reviewsController.getReview);
+reviewsRouter
+  .route("/:id")
+  .get(reviewsController.getReview)
+  .put(protect, authorize("user", "admin"), reviewsController.updateReview)
+  .delete(protect, authorize("user", "admin"), reviewsController.deleteReview);
 
 module.exports = reviewsRouter;
