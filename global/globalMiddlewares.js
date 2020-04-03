@@ -42,8 +42,19 @@ const globalMiddlewares = (app, server) => {
   // Prevent http param pollution
   app.use(hpp());
 
+  const publicDirPath = path.join(__dirname, "..", "public");
+
   // Set static folder
-  app.use(expressStatic(path.join(__dirname, "..", "public")));
+  app.use(expressStatic(publicDirPath));
+
+  // Otherwise kvell will redirect to in-built docs html
+  app.get("/docs", (req, res) => {
+    res.sendFile(path.join(publicDirPath, "index.html"), err => {
+      if (err) {
+        console.log(err);
+      }
+    });
+  });
 
   app.use("/api/v1/auth", routes.auth);
 
