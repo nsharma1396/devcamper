@@ -1,6 +1,6 @@
 const path = require("path");
 const { json: expressJson, static: expressStatic } = require("kvell-scripts");
-const routes = require("../routes");
+// const routes = require("../routes");
 const errorHandler = require("../middlewares/error");
 const fileupload = require("express-fileupload");
 const cookieParser = require("cookie-parser");
@@ -47,22 +47,13 @@ const globalMiddlewares = (app, server) => {
   // Set static folder
   app.use(expressStatic(publicDirPath));
 
-  // Otherwise kvell will redirect to in-built docs html
-  app.get("/docs", (req, res) => {
-    res.sendFile(path.join(publicDirPath, "index.html"), err => {
-      if (err) {
-        console.log(err);
-      }
-    });
-  });
+  // app.use("/api/v1/auth", routes.auth);
 
-  app.use("/api/v1/auth", routes.auth);
-
-  app.use("/api/v1/bootcamps", routes.bootcamps);
-  app.use("/api/v1/courses", routes.courses);
-  app.use("/api/v1/courses", routes.courses);
-  app.use("/api/v1/users", routes.users);
-  app.use("/api/v1/reviews", routes.reviews);
+  // app.use("/api/v1/bootcamps", routes.bootcamps);
+  // app.use("/api/v1/courses", routes.courses);
+  // app.use("/api/v1/courses", routes.courses);
+  // app.use("/api/v1/users", routes.users);
+  // app.use("/api/v1/reviews", routes.reviews);
 
   app.use(errorHandler);
 };
