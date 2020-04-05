@@ -1,6 +1,6 @@
 # DevCamper API
 
-> Backend API for DevCamper application, which is a bootcamp directory website
+> Backend API for DevCamper application, which is a bootcamp directory website developed using [Kvell.js](https://kvelljs.now.sh/)
 
 ## Usage
 
@@ -19,7 +19,7 @@ npm install
 npm start
 
 # Run in prod mode
-npm run build
+npm run build start
 ```
 
 ## Database Seeder
@@ -36,9 +36,11 @@ node seeder -i
 
 ## Demo
 
-The API is live at []()
+The API is live at [https://www.devbootcamps.co.in/](https://www.devbootcamps.co.in/)
 
-Extensive documentation with examples [here]()
+<!--
+Extensive documentation with examples [here](https://www.devbootcamps.co.in/)
+-->
 
 - Version: 1.0.0
 - License: MIT
